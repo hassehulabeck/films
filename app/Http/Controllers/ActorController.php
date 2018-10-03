@@ -14,7 +14,7 @@ class ActorController extends Controller
      */
     public function index()
     {
-        $actors = Actor::all();
+        $actors = Actor::orderBy('name')->paginate(10);
         return view('actors.index', [
           'actors' => $actors
         ]);

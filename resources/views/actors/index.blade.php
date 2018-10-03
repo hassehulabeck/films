@@ -23,4 +23,5 @@
         </div>
     </div>
 </div>
+{{ $actors->links() }}
 @endsection
