@@ -11,6 +11,6 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::resource('/movies', 'MovieController');
+Route::resource('/actors', 'ActorController');
+Route::resource('/awards', 'AwardController');
