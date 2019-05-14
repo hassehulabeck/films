@@ -11,6 +11,8 @@ class ActorTableSeeder extends Seeder
      */
     public function run()
     {
-        //
+      factory(Movie::class, 100)->create()->each(function ($movie) {
+        $movie->actors()->saveMany(factory(Actor::class, 5)->make());
+      });
     }
 }

@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Actor;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Input;
+
 
 class ActorController extends Controller
 {
@@ -27,7 +30,7 @@ class ActorController extends Controller
      */
     public function create()
     {
-        //
+        return view('actors.create');
     }
 
     /**
@@ -38,7 +41,17 @@ class ActorController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $this->authorize(Actor::class);
+
+        $this->validate($request, [
+          'name'    => 'required|unique:actors|max:100',
+          'country' => 'required|max:50',
+          'image'   => 'required'
+        ]);
+
+        Actor::create($request->all());
+        return redirect('actors');
     }
 
     /**
@@ -49,7 +62,10 @@ class ActorController extends Controller
      */
     public function show(Actor $actor)
     {
-        //
+      $actor = Actor::find($actor)->first();
+      return view('actors.show', [
+        'actor' => $actor
+      ]);
     }
 
     /**
@@ -60,7 +76,10 @@ class ActorController extends Controller
      */
     public function edit(Actor $actor)
     {
-        //
+        $actor = Actor::find($actor)->first();
+        return view('actors.edit', [
+          'actor' => $actor
+        ]);
     }
 
     /**
@@ -72,7 +91,8 @@ class ActorController extends Controller
      */
     public function update(Request $request, Actor $actor)
     {
-        //
+      $actor->update($request->all());
+      return redirect('actors');
     }
 
     /**

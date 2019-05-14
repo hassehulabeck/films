@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Actor extends Model
 {
   protected $fillable = [
-    'name', 'year', 'image'
+    'name', 'country', 'image', 'x-factor'
   ];
   public function movies() {
     return $this->belongsToMany('App\Movie');

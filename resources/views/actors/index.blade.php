@@ -14,7 +14,12 @@
                     {{ $actor->country }}
                     <p><i>
                     @foreach($actor->movies as $movie)
-                      {{ $movie->name }},
+                      <a href=" {{ route('movies.show', $movie) }}">{{ $movie->name }}</a>
+                      @if($loop->last)
+
+                      @else
+                        ,
+                      @endif
                     @endforeach
                     </i></p>
                   </div>

@@ -10,7 +10,12 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+Route::get('/private', 'HomeController@private')->name('private');
+Route::get('/', 'ActorController@index');
 Route::resource('/movies', 'MovieController');
 Route::resource('/actors', 'ActorController');
 Route::resource('/awards', 'AwardController');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
